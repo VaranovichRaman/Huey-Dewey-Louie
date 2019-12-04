@@ -8,11 +8,13 @@ namespace Dungeon.Actions
 {
     class StartDurakGame
     {
-        public bool PlayDurak()
+        public bool DurakResult;
+
+        public void PlayDurak()
         {
             DurakGameplay game = new DurakGameplay();
             game.Play();
-            return DurakGameplay.GameResult;
+            DurakResult = DurakGameplay.GameResult;
         }
     }
 }

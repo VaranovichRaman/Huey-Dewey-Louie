@@ -11,6 +11,8 @@ namespace D_and_D_demo.Actions
 {
     class FightClub
     {
+        public bool FightResult;
+
         CreatureFromFileReader creature = new CreatureFromFileReader();
         
         Random diceRandom = new Random();
@@ -60,12 +62,13 @@ namespace D_and_D_demo.Actions
                 Console.ReadLine();
                 if (hero.HeroHitPoints <= 0)
                 {
-                    Console.WriteLine($"\n{creatureFighter.CreatureName} WIN!!!\n");
-                    GameOver.CloseProgram();
+                    Console.WriteLine($"\n{creatureFighter.CreatureName} WINS!!!\n");
+                    YouDie.MonsterWins();
                 }
                 else if (creatureFighter.CreatureHitPoints <= 0)
                 {
-                    Console.WriteLine($"\n{hero.HeroName} WIN!!!\n");
+                    Console.WriteLine($"\n{hero.HeroName} WINS!!!\n");
+                    FightResult = true;
                 }
             }
         }       

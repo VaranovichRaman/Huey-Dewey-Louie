@@ -34,16 +34,23 @@ namespace Dungeon.Actions
             }
             else if (map[x, y] == "M")
             {
-                FightClub club = new FightClub();
-                club.RandomFight();   
-                hero.KeyAvailability = true;
-                Console.WriteLine($"Now you have a key!");
-                Console.ReadLine();
-                Console.Clear();
-
+                Console.WriteLine("You met a monster!");
+                MeetMonster hi = new MeetMonster();
+                hi.MonsterChoice();
+                if (MeetMonster.MeetingResult == true)
+                {
+                    hero.KeyAvailability = true;
+                    Console.WriteLine($"Now you have a key!");
+                    Console.ReadLine();
+                    Console.Clear();
+                }
+                else
+                {
+                    YouDie.MonsterWins();
+                }
                 return " ";
             }
-            else if (map[x,y] == "P")
+            else if (map[x, y] == "P")
             {
                 Win.CloseProgram();
                 return " ";
@@ -100,5 +107,5 @@ namespace Dungeon.Actions
         //    }
         //}
     }
-    
+
 }

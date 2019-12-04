@@ -179,19 +179,25 @@ namespace Dungeon.Actions
         }
         public void PlayerBids()
         {
-            Console.WriteLine($"\nBid a card. Choose by index and press <Enter> ({trump.Suit} are trumps)");
+            Console.WriteLine($"\nBid a card. Choose by index and press <Enter> ({trump.Suit} are trumps)" +
+                $"\n(or enter \"9\" to find another way to kill the Monster)");
             ShowPlayerHand();
             MakingBid();
         }
         public void MakingBid()
         {
             int.TryParse(Console.ReadLine(), out int PlChoice); //not good if enter not numbers & more than hand has
-            if ((PlChoice <= Player.Count) && (PlChoice > 0))
+            if ((PlChoice <= Player.Count-1) && (PlChoice > 0))
             {
                 playerBid = Player.ElementAt(PlChoice);
                 Swap.Add(playerBid);
                 Console.WriteLine($"\nYour card is {playerBid.ShowCard()}");
                 Player.RemoveAt(PlChoice);
+            }
+            else if (PlChoice == 9)
+            {
+                Skip skip = new Skip();
+                skip.SkipGame();
             }
             else
             {
